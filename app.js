@@ -42,8 +42,12 @@ app.post("/user", async (req, res) => {
 });
 
 
-export default function handler(req, res) {
-  const parsedUrl = parse(req.url, true);
-  app(req, res, parsedUrl);
-}
+
+let port = 3000;
+app.listen(port, () => {
+    console.log('Server is running on port localhost:3000');
+})
+
+module.exports = app
+
   
