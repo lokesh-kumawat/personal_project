@@ -20,7 +20,7 @@ connection()
 
 // routers
 app.get("/", (req, res) => {
-    res.send("code is running perferct");
+    res.send("code is running perferct in code");
 });
 
 // Add new user
@@ -33,10 +33,10 @@ app.post("/user", async (req, res) => {
         phone: phone
     });
     await newUser.save();
-    res.send(201).json({message: "User created successfully"})
+   res.status(201).json({ message: "User created successfully" });
     } catch (err) {
         console.log(err);
-        res.send(500).json({ error: "Something went wrong"})
+        res.status(500).json({ error: "Something went wrong"})
     }
     
 });
