@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 // database connect
 async function connection() {
     await mongoose
-        .connect('mongodb+srv://lokeshkumawat:p2noVWCorMoEgVeo@cluster0.awuu6zl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/personal_projects')
+        .connect('mongodb+srv://lokeshkumawat:p2noVWCorMoEgVeo@cluster0.awuu6zl.mongodb.net/personal_projects?retryWrites=true&w=majority&appName=Cluster0')
         .then(() => console.log("connected to the database"))
         .catch((err) => console.log(err))
 }
@@ -31,12 +31,12 @@ app.post("/user", async (req, res) => {
         name: name,
         email: email,
         phone: phone
-    });
+    })
     await newUser.save();
    res.status(201).json({ message: "User created successfully" });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: "Something went wrong"})
+        res.status(500).json({ error: "Something went wrong" })
     }
     
 });
