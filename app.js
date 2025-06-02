@@ -8,15 +8,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // database connect
-async function connection() {
-    await mongoose
-        .connect('mongodb+srv://lokeshkumawat:p2noVWCorMoEgVeo@cluster0.awuu6zl.mongodb.net/personal_projects?retryWrites=true&w=majority&appName=Cluster0')
-        .then(() => console.log("connected to the database"))
-        .catch((err) => console.log(err))
+async function main() {
+    await mongoose.connect('mongodb+srv://lokeshkumawat:p2noVWCorMoEgVeo@cluster0.awuu6zl.mongodb.net/personal_projects?retryWrites=true&w=majority&appName=Cluster0')
 }
 
-connection()
+main().then(() => console.log("connected to the database"))
+      .catch((err) => console.log(err))
+
 
 // routers
 app.get("/", (req, res) => {
