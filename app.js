@@ -9,17 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // database connect
-main()
-    .then((res) => {
-        console.log("connected to the database");
-    }).catch((err) => {
-        console.log("Some error to connected to the database");
-    });
-
-async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/Api_test');
+async function connection() {
+    await mongoose
+        .connect('mongodb+srv://lokeshkumawat:p2noVWCorMoEgVeo@cluster0.awuu6zl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/personal_projects')
+        .then(() => console.log("connected to the database"))
+        .catch((err) => console.log(err))
 }
 
+connection()
 
 // routers
 app.get("/", (req, res) => {
@@ -45,9 +42,8 @@ app.post("/user", async (req, res) => {
 });
 
 
-
-let port = 3000;
-app.listen(port, () => {
-    console.log('Server is running on port localhost:3000');
-})
-
+export default function handler(req, res) {
+  const parsedUrl = parse(req.url, true);
+  app(req, res, parsedUrl);
+}
+  
