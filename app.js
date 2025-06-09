@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 // Add new user
 app.post("/user", async (req, res) => {
     let { name, email, phone } = req.body;
+    console.log(req.body)
     try {
         const newUser = new User({
         name: name,
@@ -33,7 +34,7 @@ app.post("/user", async (req, res) => {
         phone: phone
     })
     await newUser.save();
-   res.status(201).json({ message: "User created successfully" });
+   res.status(200).json({ message: "User created successfully" });
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Something went wrong" })
